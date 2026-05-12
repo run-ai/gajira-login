@@ -1,10 +1,8 @@
-const fetch = require('node-fetch')
-
 module.exports = serviceName => async (state, apiMethod = 'unknown') => {
   const response = await fetch(state.req.url, state.req)
 
   state.res = {
-    headers: response.headers.raw(),
+    headers: Object.fromEntries(response.headers.entries()),
     status: response.status,
   }
 
